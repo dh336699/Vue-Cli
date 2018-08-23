@@ -1,0 +1,85 @@
+<script src="./jquery.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+    
+    #div-guide {
+        background: url('./liulanqi.png') no-repeat center;
+        width: 100%;
+        height: 100%;
+        background-size: 100% 100%;
+    }
+</style>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>银联支付</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+</head>
+
+<body>
+    <div id="div-guide" style="display:none">
+
+    </div>
+    <div id="div-pay">
+
+    </div>
+    <script>
+        $(function() {
+            if (isWxBrower()) return;
+            var data = {};
+            var orderNo = getUrlParam("orderNo");
+            var payWay = getUrlParam("payWay");
+            if (!isEmpty(orderNo,payWay))
+                data.orderNo = orderNo;
+                data.payWay = payWay;
+            alipay(data);
+        });
+
+        //是否是微信浏览器
+        function isWxBrower() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                $("#div-guide").css("display", "");
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        //支付宝支付
+        function alipay(data) {
+            console.log(data)
+            window.location.href="http://demon.frp.dev.wmeimob.com/api/union/unionpay?orderNo=" + data.orderNo;
+            // $.ajax({
+            //     url: 'http://lzx0627.vicp.io/bszf-weixin/alipay/wap',
+            //     data: data,
+            //     dataType: "JSON",
+            //     success: function(result) {
+            //         console.log(result);                  
+            //     }
+            // });
+        }
+        //获取url中的参数
+        function getUrlParam(name) {
+            console.log(name);
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg); //匹配目标参数
+            if (!isEmpty(r) && !isEmpty(unescape(r[2]))) {
+                return unescape(r[2])
+            }
+            return null; //返回参数值
+        }
+
+        function isEmpty(r) {
+            if (r == null || r == undefined || r == "" || r == "undefined" || r == "null") return true;
+            else return false;
+        }
+    </script>
+</body>
+
+</html>
