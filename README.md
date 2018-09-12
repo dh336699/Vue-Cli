@@ -1,4 +1,4 @@
-# template
+# Personal vue-cli 二次封装
 
 > A Vue.js project
 
