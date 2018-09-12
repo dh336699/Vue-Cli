@@ -38,10 +38,8 @@ util.http.interceptors.response.use(
       console.log(error)
       switch (error.response.status) {
         case 401:
-        console.log('?////')
           localStorage.token = ''
           localStorage.removeItem('token')
-          debugger
           window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + config.appid + '&redirect_uri=' + config.loginUrl + '/getToken' + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
       }
     }

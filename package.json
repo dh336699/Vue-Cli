@@ -2,7 +2,7 @@
   "name": "template",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "张龙佳 <longjia.zhang@wmeimob.com>",
+  "author": "Demon 505159718@qq.com",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
