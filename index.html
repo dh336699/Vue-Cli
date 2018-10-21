@@ -12,4 +12,22 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <script>
+    //解决遮罩层滚动穿透问题，分别在遮罩层弹出后和关闭前调用
+    const Modal = ( (bodyCls) =>{
+      let scrollTop;
+      return {
+        disable: function () {
+          scrollTop = document.scrollingElement.scrollTop;
+          document.body.classList.add(bodyCls);
+          document.body.style.top = -scrollTop + 'px';
+        },
+        able: function () {
+          document.body.classList.remove(bodyCls);
+          // scrollTop lost after set position:fixed, restore it back.
+          document.scrollingElement.scrollTop = scrollTop;
+        }
+      };
+    })('dialog-open');
+  </script>
 </html>

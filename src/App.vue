@@ -12,9 +12,14 @@
 
 <style lang="less">
   @import '~vux/src/styles/reset.less';
-
+  body { // 解决移动端modal滚动击穿
+    &.dialog-open {
+      position: fixed;
+      width: 100%;
+    }
+  }
   #app {
-    height: 100%;
+    min-height: 100%;
     background: #F3EEEB;
     .vux-header {
       background: white;
@@ -42,6 +47,9 @@
       animation-name: slideInRight;
       -webkit-animation-duration: .4s;
       animation-duration: .4s;
+    }
+    ::-webkit-scrollbar {
+      display: none;
     }
   }
 

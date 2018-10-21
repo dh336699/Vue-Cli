@@ -1,15 +1,23 @@
 <template>
   <article class="tabBar-container">
-    <div class="common-wrapper" @click="index">
-      <img src="/static/images/home_icon@2x.png" v-if="!home" alt="">
-      <img src="/static/images/xz_home_icon@2x.png" v-else alt="">
-      <p :class="!home ? '' : 'active'">首页</p>
-    </div>
-    <div class="common-wrapper" @click="mines">
-      <img src="/static/images/gray_me_icon@2x.png" v-if="!mine" alt="">
-      <img src="/static/images/me_icon@2x.png" v-else alt="">
-      <p :class="!mine ? '' : 'active'">我的</p>
-    </div>
+    <section class="tabbar-wrapper">
+      <router-link to="/getoken" class="common-item" :class="{active: index === 0}">
+        <img :src="index !== 0 ? '/static/images/watch@2x.png' : '/static/images/watch2.png'" class="logo">
+        <p>预约</p>
+      </router-link>
+      <router-link to="/getoken" class="common-item" :class="{active: index === 1}">
+        <img :src="index !== 1 ? '/static/images/15@2x.png' : '/static/images/watch2.png'" class="logo2">
+        <p>商城</p>
+      </router-link>
+      <router-link to="/getoken" class="common-item" :class="{active: index === 2}">
+        <img :src="index !== 2 ? '/static/images/shop1.png' : '/static/images/shop3.png'" class="logo3">
+        <p>购物袋</p>
+      </router-link>
+      <router-link to="/getoken" class="common-item" :class="{active: index === 3}">
+        <img :src="index !== 3 ? '/static/images/mine.png' : '/static/images/mine3.png'" class="logo4">
+        <p>预约</p>
+      </router-link>
+    </section>
   </article>
 </template>
 
@@ -19,22 +27,12 @@
       return {}
     },
     props: {
-      home: {
-        type: Number,
-        default: 0
-      },
-      mine: {
+      index: {
         type: Number,
         default: 0
       }
     },
     methods: {
-      index() {
-        this.$router.push('/userIndex')
-      },
-      mines() {
-        this.$router.push('/userCenter')
-      }
     },
     components: {}
   }
@@ -43,27 +41,47 @@
 
 <style lang='less' scoped>
   .tabBar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2.133333rem;
-    height: 1.306667rem;
-    background: white;
-    .common-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      img {
-        margin-bottom: .026667rem;
-        width: .72rem;
-        height: .72rem;
-      }
-      p {
-        font-size: .266667rem;
-        font-family: PingFangSC-Regular;
-        color: #C2C8CF;
+    .tabbar-wrapper {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height:1.31rem /* 98/75 */;
+      background:rgba(255,255,255,1);
+      border-top: .01rem /* 1/75 */ solid #E8EAEB;
+      .list(row, space-between, center);
+      .common-item {
+        flex: 1;
+        .list(column, center, center);
+        width: 100%;
+        height: 100%;
         &.active {
-          color: #28A0F4;
+          background: #413B36;
+          p {
+            color: white;
+          }
+        }
+        .logo {
+          margin-bottom: .03rem /* 2/75 */;
+        .imgs(.59rem /* 44/75 */, .61rem /* 46/75 */);
+        }
+        .logo2 {
+          margin-bottom: .03rem /* 2/75 */;
+          .imgs(.61rem /* 46/75 */, .64rem /* 48/75 */);
+        }
+        .logo3 {
+          margin-bottom: .03rem /* 2/75 */;
+          .imgs(.56rem /* 42/75 */, .56rem /* 42/75 */);
+        }
+        .logo4 {
+          margin-bottom: .03rem /* 2/75 */;
+          .imgs(.51rem /* 38/75 */, .64rem /* 48/75 */);
+        }
+        p {
+          font-size:.27rem /* 20/75 */;
+          font-family:PingFangSC-Regular;
+          font-weight:400;
+          color:#413B36;
         }
       }
     }

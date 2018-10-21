@@ -31,7 +31,7 @@ import store from '@/store'
 
 export default {
   name: 'bind',
-  data () {
+  data() {
     return {
       countNum: 60,
       start: false,
@@ -41,7 +41,7 @@ export default {
     }
   },
   methods: {
-    async setUserInfo () {
+    async setUserInfo() {
       try {
         this.$vux.loading.show({text: 'Loading...'})
         const res = await store.dispatch('getUserInfo')
@@ -53,7 +53,7 @@ export default {
         console.log(e)
       }
     },
-    async bindPhone () {
+    async bindPhone() {
       try {
         this.$vux.loading.show({text: 'Loading...'})
         const { data } = await register({ phoneno: this.phoneno, code: this.code })
@@ -71,7 +71,7 @@ export default {
 
       }
     },
-    checkEmpty () {
+    checkEmpty() {
       const testPhone = /^134[0-8]\d{7}$|^13[^4]\d{8}$|^14[5-9]\d{8}$|^15[^4]\d{8}$|^16[6]\d{8}$|^17[0-8]\d{8}$|^18[\d]{9}$|^19[8,9]\d{8}$/
 
       if (this.phoneno === '') {
@@ -90,7 +90,7 @@ export default {
       }
       this.bindPhone()
     },
-    checkValidData () {
+    checkValidData() {
       const testPhone = /^134[0-8]\d{7}$|^13[^4]\d{8}$|^14[5-9]\d{8}$|^15[^4]\d{8}$|^16[6]\d{8}$|^17[0-8]\d{8}$|^18[\d]{9}$|^19[8,9]\d{8}$/
 
       if (!testPhone.test(this.phoneno)) {
@@ -100,7 +100,7 @@ export default {
       this.start = true
       this.getValidCode()
     },
-    async getValidCode () {
+    async getValidCode() {
       try {
         this.$vux.loading.show({text: 'Loading...'})
         const { data } = await sendMsm({ phoneno: this.phoneno })
@@ -121,7 +121,7 @@ export default {
 
       }
     },
-    finished (index) {
+    finished(index) {
       this.start = false
       this.countNum = 60
     }

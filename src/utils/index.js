@@ -3,7 +3,7 @@
  * @param {Object} obj - 待拼接的对象
  * @returns {string} - 拼接成的请求字符串
  */
-export function formatGetUri (obj) {
+export function formatGetUri(obj) {
   const params = []
 
   Object.keys(obj).forEach((key) => {
@@ -21,7 +21,7 @@ export function formatGetUri (obj) {
 /**
  * JSON转表单
  */
-export function formatFormData (obj) {
+export function formatFormData(obj) {
   let formData = new FormData()
 
   Object.keys(obj).forEach((key) => {
@@ -41,7 +41,7 @@ export function formatFormData (obj) {
  * @param {Object} obj - 待拼接的对象
  * @returns {string} - 拼接成的请求字符串
  */
-export function formatAreaData (arr) {
+export function formatAreaData(arr) {
   let params = []
 
   arr.forEach((opt) => {
@@ -58,4 +58,25 @@ export function formatAreaData (arr) {
   })
 
   return params
+}
+
+/**
+ 1. 设置title，解决微信改不了title的bug
+ */
+export const setTitle = title => {
+  document.title = title
+  let userAgent = window.navigator.userAgent.toLowerCase()
+  let isiOS = userAgent.indexOf('applewebkit') >= 0
+  let isWechat = userAgent.indexOf('micromessenger') >= 0
+  if (isiOS && isWechat) {
+    let iframe = document.createElement('iframe')
+    iframe.src = 'https://www.baidu.com/favicon.ico'
+    iframe.style.display = 'none'
+    document.body.appendChild(iframe)
+    iframe.onload = function() {
+      setTimeout(function() {
+        iframe.remove()
+      }, 0)
+    }
+  }
 }
