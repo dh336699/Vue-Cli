@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import Moment from 'moment'
 import FastClick from 'fastclick'
 import { LoadingPlugin, ToastPlugin, AlertPlugin, ConfirmPlugin } from 'vux'
@@ -34,6 +35,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
