@@ -10,7 +10,7 @@ import { LoadingPlugin, ToastPlugin, AlertPlugin, ConfirmPlugin } from 'vux'
 import '@/styles/index.css'
 
 Vue.use(LoadingPlugin)
-Vue.use(ToastPlugin)
+Vue.use(ToastPlugin, {isShowMask: true})
 Vue.use(AlertPlugin)
 Vue.use(ConfirmPlugin)
 
