@@ -1,5 +1,5 @@
 export default class Timer {
-  countDown(end, update, handle) {
+  countDown(end, update, handle) { // end-结束的时间 update 倒计时执行的函数 handle 倒计时结束执行的函数
     let now = new Date().getTime()
     // console.log(now, 'now')
     const self = this
