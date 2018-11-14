@@ -21,7 +21,8 @@
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vux": "^2.9.0",
-    "weixin-js-sdk": "^1.3.2"
+    "weixin-js-sdk": "^1.3.2",
+    "better-scroll": "^1.13.2"
   },
   "devDependencies": {
     "animate.css": "^3.6.1",
