@@ -1,7 +1,7 @@
 <template>
   <article class="six-header-wrapper">
     <ul>
-      <li v-for="(item, index) in lists" :key="item.id" :class="item.status ? 'active' : ''" @click="chooseType(lists, item, index)">{{item.typeName}}</li>
+      <li v-for="(item, index) in lists" :key="index" :class="item.status ? 'active' : ''" @click="chooseType(lists, item, index)">{{item.typeName}}</li>
     </ul>
   </article>
 </template>
@@ -10,20 +10,20 @@
   export default {
     props: {
       lists: {
-        type: Array,
-        default: [
-          {id: 1, typeName: '主食', status: true},
-          {id: 2, typeName: '点心'},
-          {id: 3, typeName: '粥品'},
-          {id: 4, typeName: '饮料'},
-          {id: 5, typeName: '果蔬'},
-          {id: 6, typeName: '套餐'}
-        ]
+        type: Array
+        // default: [
+        //   {id: 1, typeName: '主食', status: true},
+        //   {id: 2, typeName: '点心'},
+        //   {id: 3, typeName: '粥品'},
+        //   {id: 4, typeName: '饮料'},
+        //   {id: 5, typeName: '果蔬'},
+        //   {id: 6, typeName: '套餐'}
+        // ]
       }
     },
     methods: {
       chooseType(lists, item, index) {
-        this.$emit('chooseType', lists, item.id)
+        this.$emit('chooseType', item)
         lists.forEach((list) => {
           list.status = false
         })
@@ -34,36 +34,37 @@
 </script>
 
 <style lang="less" scoped>
+  @import '../../common/styles/elements.less';
+
   .six-header-wrapper {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background: #FFFFFF;
+    z-index: 3;
     ul {
+      .logo('/static/images/order-header', 100%, 1.44rem /* 108/75 */);
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
-      height: 94rpx;
-      padding-left: 30rpx;
-      padding-right: 32rpx;
-      border-bottom: 2rpx solid #E5E5E5;
+      height: 1.44rem /* 108/75 */;
+      padding-left: .4rem /* 30/75 */;
+      padding-right: .43rem /* 32/75 */;
+      border-bottom: .03rem /* 2/75 */ solid #E5E5E5;
       li {
-        flex: 1;
-        width: 96rpx;
         height: 100%;
-        line-height: 96rpx;
-        margin-left:10rpx;
-        margin-right: 10rpx;
-        font-size: 28rpx;
-        color: #444444;
-        text-align: center;
-        font-family:PingFang-SC-Light;
+        line-height: 1.44rem /* 108/75 */;
+        margin-left:.13rem /* 10/75 */;
+        margin-right: .13rem /* 10/75 */;
+        font-size:.32rem /* 24/75 */;
+        font-family:PingFangSC-Regular;
+        font-weight:400;
+        color:rgba(65,59,54,1);
         &.active {
-          color: #F3A68D;
           height: 100%;
-          line-height: 94rpx;
-          border-bottom: 4rpx solid #F3A68D;
+          line-height: 1.44rem /* 108/75 */;
+          border-bottom: .05rem /* 4/75 */ solid #413B36;
           box-sizing: border-box;
         }
       }

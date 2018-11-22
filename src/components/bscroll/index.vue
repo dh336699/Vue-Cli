@@ -5,7 +5,6 @@
 </template>
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
-
   export default {
     props: {
       /**
@@ -31,6 +30,10 @@
         type: Boolean,
         default: false
       },
+      scrollY: {
+        type: Boolean,
+        default: true
+      },
       /**
        * 是否派发滚动事件
        */
@@ -50,7 +53,7 @@
        */
       pullup: {
         type: Boolean,
-        default: true
+        default: false
       },
       /**
        * 是否派发顶部下拉的事件，用于下拉刷新
@@ -90,16 +93,17 @@
           probeType: this.probeType,
           click: this.click,
           scrollX: this.scrollX,
-          pullup: this.pullup
+          pullup: this.pullup,
+          pulldown: this.pulldown,
+          scrollY: this.scrollY
         })
-
+        console.log(this.scroll, 'BScroll')
         // 是否派发滚动事件
         if (this.listenScroll) {
           this.scroll.on('scroll', (pos) => {
             this.$emit('scroll', pos)
           })
         }
-
         // 是否派发滚动到底部事件，用于上拉加载
         if (this.pullup) {
           this.scroll.on('scrollEnd', () => {
@@ -109,7 +113,6 @@
             }
           })
         }
-
         // 是否派发顶部下拉事件，用于下拉刷新
         if (this.pulldown) {
           this.scroll.on('touchend', (pos) => {
@@ -119,7 +122,6 @@
             }
           })
         }
-
         // 是否派发列表滚动开始的事件
         if (this.beforeScroll) {
           this.scroll.on('beforeScrollStart', () => {

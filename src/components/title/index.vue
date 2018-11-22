@@ -2,6 +2,7 @@
   <article class="title-container">
     <p class="date"><slot name="title"></slot></p>
     <slot name="content"></slot>
+    <img src="/static/images/shadow.png" alt="" class="shadow">
   </article>
 </template>
 
@@ -24,6 +25,7 @@ export default {
   margin-bottom: .4rem /* 30/75 */;
   padding: .37rem /* 28/75 */ .4rem /* 30/75 */ .4rem /* 30/75 */;
   background: white;
+  position: relative;
   .date {
     margin-bottom: .39rem /* 29/75 */;
     padding-bottom: .35rem /* 26/75 */;

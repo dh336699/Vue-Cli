@@ -34,7 +34,6 @@
     },
     methods: {
       swiperChange(e) {
-        console.log(e)
         // this.current = e.mp.detail.current
       }
     },
