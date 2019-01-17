@@ -90,16 +90,17 @@ export const time60s = (timeNum, showTime) => {
 //     }
 
 export const _jssdk = () => {
-  console.log(window.location.href)
-  let currUrl = encodeURIComponent(window.location.href)
+  let url = window.location.href
+  let index = url.indexOf('?')
+  let currUrl = window.location.href.slice(0, index)
+  currUrl = encodeURIComponent(currUrl)
   let { data } = await api.jssdk({currentUrl: currUrl, appid: config.appid})
-  console.log(data, 'datadata')
   wx.config({
-    // debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    appId: data.appId, // 必填，公众号的唯一标识
-    timestamp: data.timestamp, // 必填，生成签名的时间戳
-    nonceStr: data.nonStr, // 必填，生成签名的随机串
-    signature: data.signature, // 必填，签名
-    jsApiList: ['previewImage'] // 必填，需要使用的JS接口列表
+      // debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+      appId: data.appId, // 必填，公众号的唯一标识
+      timestamp: data.timestamp, // 必填，生成签名的时间戳
+      nonceStr: data.nonStr, // 必填，生成签名的随机串
+      signature: data.signature, // 必填，签名
+      jsApiList: ['chooseImage', 'uploadImage'] // 必填，需要使用的JS接口列表
   })
 }

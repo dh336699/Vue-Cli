@@ -1,7 +1,8 @@
 <template>
   <article class="swiper-container">
     <Swiper :list="options.list" :show-dots="options.showDots" :height="options.height" :loop="options.loop"
-    :auto="options.auto" :interval="options.interval" v-model="options.current" @on-index-change="swiperChange"></Swiper>
+    :auto="options.auto" :show-desc-mask="false" dots-position="center"
+    :interval="options.interval" v-model="options.current" @on-index-change="swiperChange"></Swiper>
     <ul class="dots" v-if="!options.showDots">
       <li v-for="(item, idx) in options.list" :key="idx">
         <div class="dot" :class="{active: idx === options.current}"></div>
@@ -21,7 +22,18 @@
       options: {
         type: Object,
         default: () => ({
-          list: [],
+          list: [
+            {
+              url: 'javascript:',
+              img: 'https://static.vux.li/demo/1.jpg',
+              title: '送你一朵fua'
+            }, {
+              url: 'javascript:',
+              img: 'https://static.vux.li/demo/5.jpg',
+              title: '送你一次旅行',
+              fallbackImg: 'https://static.vux.li/demo/3.jpg'
+            }
+          ],
           height: '180px',
           width: '100%',
           showDots: true,
