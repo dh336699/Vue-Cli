@@ -35,12 +35,14 @@
 
 <style lang="less" scoped>
   @import '../../common/styles/elements.less';
-
   .six-header-wrapper {
+    .border-bottom(#EAEAEA);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    padding-left: .4rem /* 30/75 */;
+    padding-right: .43rem /* 32/75 */;
     background: #FFFFFF;
     z-index: 3;
     ul {
@@ -48,13 +50,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 1.44rem /* 108/75 */;
-      padding-left: .4rem /* 30/75 */;
-      padding-right: .43rem /* 32/75 */;
-      border-bottom: .03rem /* 2/75 */ solid #E5E5E5;
+      height: 1.17rem /* 88/75 */;
       li {
         height: 100%;
-        line-height: 1.44rem /* 108/75 */;
+        line-height: 1.17rem /* 88/75 */;
         margin-left:.13rem /* 10/75 */;
         margin-right: .13rem /* 10/75 */;
         font-size:.32rem /* 24/75 */;
@@ -63,7 +62,6 @@
         color:rgba(65,59,54,1);
         &.active {
           height: 100%;
-          line-height: 1.44rem /* 108/75 */;
           border-bottom: .05rem /* 4/75 */ solid #413B36;
           box-sizing: border-box;
         }
