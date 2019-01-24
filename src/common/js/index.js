@@ -43,3 +43,64 @@ export const time60s = (timeNum, showTime) => {
     return timeNum
   }
 }
+// _checkMobile(type) {
+//       let telReg = /^1[2-9][0-9]{9}$/
+//       if (!this.datas.mobile) {
+//         xx.toast(this, '请输入手机号码')
+//         return false
+//       } else if (!telReg.test(this.datas.mobile)) {
+//         xx.toast(this, '请输入正确的手机号码')
+//         return false
+//       } else if (type && !this.datas.code) {
+//         xx.toast(this, '请输入验证码')
+//         return false
+//       } else return true
+//     },
+//     async getVerify() {
+//       let bool = this._checkMobile(false)
+//       if (!bool) return
+//       try {
+//         let { data } = await api.getSms({mobile: this.datas.mobile})
+//         if (!data.code) xx.alert(this, '已发送验证码', () => { this.getCode() })
+//         else xx.alert(this, data.msg)
+//       } catch (e) {
+//         throw Error(e)
+//       }
+//     },
+//     getCode() {
+//       let telReg = /^1[2-9][0-9]{9}$/
+//       if (!this.datas.mobile) {
+//         xx.toast(this, '请输入手机号码')
+//         return
+//       } else if (!telReg.test(this.datas.mobile)) {
+//         xx.toast(this, '请输入正确的手机号码')
+//         return
+//       }
+//       this.timer = setTimeout(() => {
+//         this.getCode()
+//       }, 1000)
+//       if (this.timeNum === 0) {
+//         this.timeNum = 60
+//         this.showTime = false
+//         clearTimeout(this.timer)
+//       } else {
+//         this.timeNum -= 1
+//         this.showTime = true
+//       }
+//     }
+
+export const _jssdk = () => {
+  let url = window.location.href
+  let index = url.indexOf('?')
+  let currUrl = window.location.href.slice(0, index)
+  currUrl = encodeURIComponent(currUrl)
+  let { data } = await api.jssdk({currentUrl: currUrl, appid: config.appid})
+  wx.config({
+      // debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+      appId: data.appId, // 必填，公众号的唯一标识
+      timestamp: data.timestamp, // 必填，生成签名的时间戳
+      nonceStr: data.nonStr, // 必填，生成签名的随机串
+      signature: data.signature, // 必填，签名
+      jsApiList: ['chooseImage', 'uploadImage'] // 必填，需要使用的JS接口列表
+  })
+}
