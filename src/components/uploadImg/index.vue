@@ -1,5 +1,5 @@
 <template>
-  <input type="file" name="pic" ref="file" accept="image/*" @change="upload"/>
+  <input class="upload-image" type="file" name="pic" ref="file" accept="image/*" @change="upload"/>
 </template>
 
 <script>
@@ -299,10 +299,10 @@ export default {
 }
 </script>
 
-<style>
-input {
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-}
+<style lang="less" scoped>
+  .upload-image {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
 </style>
